@@ -1,6 +1,7 @@
 import React from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "./Leaflet.css";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 // import icon from "leaflet/dist/images/marker-icon.png";
 // import iconShadow from "leaflet/dist/images/marker-shadow.png";
@@ -10,91 +11,73 @@ delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  iconUrl: "http://localhost:3000/images/orient-city.png",
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+  iconSize: [51, 34],
 });
 
 class Leaflet extends React.Component {
   state = {
-    markers: [{ x: 13.239945499286312, y: 116.01562500000001, body: "hi" }],
-    refObj: {},
+    markers: [
+      {
+        x: 19.6,
+        y: -25,
+        body:
+          "A huge body containing lots of words to test how big I can make a popup",
+        icon: "orient-city",
+        zoom: 5,
+      },
+    ],
+    zoom: 1,
   };
 
-  componentDidMount() {
-    // // set up leaflet map state
-    // const map = L.map("map").setView([0, 0], 1);
-    // //add custom tile layer and set properties
-    // L.tileLayer(`http://localhost:3000/map/{z}/{x}/{y}.png`, {
-    //   attribution: "&copy;",
-    //   maxZoom: 4,
-    //   continuousWorld: false,
-    //   noWrap: true,
-    // }).addTo(map);
-    // // adding markers from database
-    // // api.fetchMarkers().then(({ data }) => {
-    // //   this.setState({ markers: data.markers });
-    // // });
-    // map.on("click", function (e) {
-    //   const coord = e.latlng;
-    //   console.log(coord);
-    // });
-    // this.state.markers.forEach((marker, index) => {
-    //   console.log("in the loop");
-    //   this.state.refObj[index] = L.marker([marker.x, marker.y])
-    //     .addTo(map)
-    //     .bindPopup(marker.body);
-    // });
-  }
+  componentDidMount() {}
 
   componentDidUpdate() {}
 
-  // addMarker = (e) => {
-  //   const { markers } = this.state;
-  //   markers.pop();
-  //   markers.push(e.latlng);
-  //   this.setState({ markers });
-  // };
-
   render() {
+    const { url, map } = this.props;
     return (
       <Map
         center={[0, 0]}
         zoom={1}
-        maxZoom={4}
+        maxZoom={5}
         minZoom={1}
         onClick={(e) => {
           const coord = e.latlng;
           console.log(coord);
         }}
+        onzoomend={(e) => {
+          this.setState({ zoom: e.target._zoom });
+        }}
         style={{ width: "100vw", height: "100vh" }}
       >
         <TileLayer
           attribution="&copy;"
-          url="http://localhost:3000/map/{z}/{x}/{y}.png"
+          url={`${url}/images/${map}/{z}/{x}/{y}.png`}
           continuousWorld={false}
           noWrap={true}
         />
-        <Marker
-          key={`marker-1`}
-          position={[19.311143355064655, -21.796875000000004]}
-          // icon={L.icon({
-          //   iconUrl: icon,
-          //   shadowUrl: iconShadow,
-          //   iconSize: [38, 95], // size of the icon
-          //   shadowSize: [50, 64], // size of the shadow
-          //   iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-          //   shadowAnchor: [4, 62], // the same for the shadow
-          //   popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-          // })}
-        ></Marker>
 
-        {/* {this.state.markers.map((marker, i) => (
-          <Marker key={`marker-${i}`} position={[marker.x, marker.y]}></Marker>
-        ))} */}
+        {this.state.markers.map((marker) => {
+          if (marker.zoom === this.state.zoom) {
+            return (
+              <Marker
+                key={`marker-1`}
+                position={[marker.x, marker.y]}
+                icon={L.icon({
+                  iconUrl: `${url}/images/${marker.icon}.png`,
+                  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+                  iconSize: [51, 34],
+                })}
+              >
+                <Popup>{marker.body}</Popup>
+              </Marker>
+            );
+          }
+        })}
       </Map>
     );
-
-    // return <div id="map" style={{ height: "100vh" }}></div>;
   }
 }
 

@@ -1,0 +1,117 @@
+/* .back {
+  background: linear-gradient(ellipse, #e66465, transparent);
+  z-index: -2;
+  height: 80vh;
+  width: 100vw;
+  position: absolute;
+} */
+body {
+  height: 60vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, #ebad96, transparent);
+}
+
+.parallax-container {
+  background-color: white;
+}
+
+.red-section {
+  position: absolute;
+  top: 100vh;
+  width: 100vw;
+  background-color: #2e1010;
+  z-index: 0;
+  font-family: "AustralisProSwash-Italic";
+}
+
+.mountain-layer {
+  position: absolute;
+  width: 100vw;
+}
+
+.castle-section {
+  position: absolute;
+  top: 18vh;
+  width: 100vw;
+  z-index: 1;
+}
+
+.forest-section {
+  position: absolute;
+  top: 40vh;
+  width: 100vw;
+  z-index: 2;
+}
+
+.forest-layer-front {
+  position: absolute;
+  top: 44vh;
+  width: 100vw;
+  z-index: 3;
+}
+
+.cliff-layer {
+  position: absolute;
+  top: 44vh;
+  width: 100vw;
+  z-index: 5;
+}
+
+h1 {
+  font-size: 4em;
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+p {
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  padding: 1em 1em 1em 1em;
+}
+
+.caps {
+  color: rgba(255, 255, 255, 0.7);
+  float: left;
+  font-size: 7em;
+  position: relative;
+  top: 8px;
+}
+
+@media (orientation: portrait) {
+  .mountain-layer {
+    position: absolute;
+    top: 26vh;
+    width: 100vw;
+  }
+
+  .castle-section {
+    position: absolute;
+    top: 32vh;
+    width: 100vw;
+    z-index: 1;
+  }
+
+  .forest-section {
+    position: absolute;
+    top: 38vh;
+    width: 100vw;
+    z-index: 2;
+  }
+  .forest-layer-front {
+    top: 40vh;
+  }
+  .cliff-layer {
+    position: absolute;
+    top: 40vh;
+    width: 100vw;
+    z-index: 3;
+  }
+
+  .red-section {
+    top: 65vh;
+  }
+}
+
+/* animation */
