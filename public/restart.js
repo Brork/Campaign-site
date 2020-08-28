@@ -1,4 +1,4 @@
+window.cancelAnimationFrame(animate);
+
 init();
 animate();
-console.log(birds);
-console.log(boids);

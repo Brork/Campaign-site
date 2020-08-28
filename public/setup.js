@@ -3,7 +3,7 @@ let SCREEN_WIDTH = window.innerWidth,
   SCREEN_WIDTH_HALF = SCREEN_WIDTH / 2,
   SCREEN_HEIGHT_HALF = SCREEN_HEIGHT / 2;
 
-let camera, scene, renderer, birds, bird, landscapeMode;
+let camera, scene, renderer, birds, bird, landscapeMode, animationFrame;
 
 if (SCREEN_WIDTH > SCREEN_HEIGHT) {
   landscapeMode = true;
@@ -15,8 +15,6 @@ let boid, boids;
 
 init();
 animate();
-console.log(birds);
-console.log(boids);
 
 const restart = () => {
   birds = [];
@@ -48,6 +46,34 @@ function init() {
   } else {
     addBirds(50);
   }
+
+  // renderer.autoClear = false;
+
+  document.addEventListener("mousemove", onDocumentMouseMove, false);
+  const buttons = document.getElementById("map-button");
+  buttons.addEventListener("click", stopAnimate);
+  renderer = new THREE.CanvasRenderer();
+  let parent;
+  if (landscapeMode === true) {
+    renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    parent = document.getElementById("bird-layer");
+  } else {
+    renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT * 0.6);
+    parent = document.getElementById("container");
+  }
+  if (parent !== null) {
+    const canvas = parent.appendChild(renderer.domElement);
+    canvas.style.position = "absolute";
+    canvas.style.zIndex = 4;
+    canvas.id = "bird-canvas";
+  } else {
+    const canvas = document.body.appendChild(renderer.domElement);
+    canvas.id = "bird-canvas";
+  }
+
+  //
+
+  window.addEventListener("resize", onWindowResize, false);
 
   // repulse to have birds split
   onDocumentMouseMove({
@@ -90,30 +116,6 @@ function addBirds(num) {
     bird.position = boids[i].position;
     scene.add(bird);
   }
-
-  renderer = new THREE.CanvasRenderer();
-  // renderer.autoClear = false;
-
-  document.addEventListener("mousemove", onDocumentMouseMove, false);
-  let parent;
-  if (landscapeMode === true) {
-    renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    parent = document.getElementById("bird-layer");
-  } else {
-    renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT * 0.6);
-    parent = document.getElementById("container");
-  }
-  if (parent !== null) {
-    const canvas = parent.appendChild(renderer.domElement);
-    canvas.style.position = "absolute";
-    canvas.style.zIndex = 4;
-  } else {
-    document.body.appendChild(renderer.domElement);
-  }
-
-  //
-
-  window.addEventListener("resize", onWindowResize, false);
 }
 
 function onWindowResize() {
@@ -145,11 +147,15 @@ function onDocumentMouseMove(event) {
 }
 
 //
-
 function animate() {
-  requestAnimationFrame(animate);
+  setTimeout(function () {
+    animationFrame = requestAnimationFrame(animate);
+    render();
+  });
+}
 
-  render();
+function stopAnimate() {
+  cancelAnimationFrame(animationFrame);
 }
 
 function render() {

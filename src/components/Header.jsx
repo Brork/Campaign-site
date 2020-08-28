@@ -37,6 +37,7 @@ class Header extends React.Component {
               ? { color: "rgba(0, 0, 0, 0.7)" }
               : {}
           }
+          id="map-button"
         >
           MAP
         </Link>
