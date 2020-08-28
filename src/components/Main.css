@@ -1,18 +1,8 @@
-/* .back {
-  background: linear-gradient(ellipse, #e66465, transparent);
-  z-index: -2;
-  height: 80vh;
-  width: 100vw;
-  position: absolute;
-} */
-body {
+.background {
   height: 60vh;
   width: 100vw;
   background: linear-gradient(to bottom, #ebad96, transparent);
-}
-
-.parallax-container {
-  background-color: white;
+  position: fixed;
 }
 
 .red-section {
@@ -21,7 +11,6 @@ body {
   width: 100vw;
   background-color: #2e1010;
   z-index: 0;
-  font-family: "AustralisProSwash-Italic";
 }
 
 .mountain-layer {

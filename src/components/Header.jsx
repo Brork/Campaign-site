@@ -4,55 +4,42 @@ import { Link } from "@reach/router";
 
 class Header extends React.Component {
   render() {
+    const { pageHeader } = this.props;
+    const { updatePageHeader } = this.props;
     return (
-      <div className="header-grid">
-        <span className="header">
-          <span>
-            <h1 className="red-text">N</h1>
-            <h1 className="white-text">C News</h1>
-          </span>
-
-          {/* <form className="inline searchbar">
-          <label className="white-text">
-            search
-            <input></input>
-          </label>
-          <button className="searchbutton">
-            <img
-              src={require("../assets/search_icon.png")}
-              alt="Enter"
-              height="16"
-            />
-          </button>
-        </form> */}
-
-          <Link to={"/"} className="header-button white-text">
-            topics
-          </Link>
-          <Link to={`/articles`} className="header-button white-text">
-            articles
-          </Link>
-          {this.props.username === null ? (
-            <button
-              className="header-button white-text"
-              onClick={() => {
-                this.props.login("jessjelly");
-              }}
-            >
-              <p className="log-button">login</p>
-            </button>
-          ) : (
-            <button
-              className="header-button white-text"
-              onClick={this.props.logout}
-            >
-              logout
-            </button>
-          )}
-        </span>
-        <p className="username-banner">
-          {this.props.username === null ? null : `user: ${this.props.username}`}
-        </p>
+      <div className="header">
+        <Link
+          to={"/"}
+          className="header-button white-text"
+          onClick={() => {
+            if (pageHeader === true) {
+              updatePageHeader();
+            }
+          }}
+          style={
+            window.location.pathname === "/"
+              ? { color: "rgba(0, 0, 0, 0.7)" }
+              : {}
+          }
+        >
+          HOME
+        </Link>
+        <Link
+          to={"/world-map"}
+          className="header-button white-text"
+          onClick={() => {
+            if (pageHeader === false) {
+              updatePageHeader();
+            }
+          }}
+          style={
+            window.location.pathname === "/world-map"
+              ? { color: "rgba(0, 0, 0, 0.7)" }
+              : {}
+          }
+        >
+          MAP
+        </Link>
       </div>
     );
   }

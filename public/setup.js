@@ -15,6 +15,19 @@ let boid, boids;
 
 init();
 animate();
+console.log(birds);
+console.log(boids);
+
+const restart = () => {
+  birds = [];
+  boids = [];
+
+  if (SCREEN_WIDTH + SCREEN_HEIGHT > 1600) {
+    addBirds(80);
+  } else {
+    addBirds(50);
+  }
+};
 
 function init() {
   camera = new THREE.PerspectiveCamera(
@@ -46,7 +59,6 @@ function init() {
 function addBirds(num) {
   for (let i = 0; i < num; i++) {
     let int = 1;
-
     boid = boids[i] = new Boid();
 
     boid.position.x = Math.random() * SCREEN_WIDTH * int + SCREEN_WIDTH * int;
@@ -109,11 +121,11 @@ function onWindowResize() {
   camera.updateProjectionMatrix();
 
   renderer.setSize(window.innerWidth, window.innerHeight / 2);
-
-  (SCREEN_WIDTH = window.innerWidth),
-    (SCREEN_HEIGHT = window.innerHeight),
-    (SCREEN_WIDTH_HALF = SCREEN_WIDTH / 2),
-    (SCREEN_HEIGHT_HALF = SCREEN_HEIGHT / 2);
+  if (window.innerWidth > window.innerHeight) {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  } else {
+    renderer.setSize(window.innerWidth, window.innerHeight * 0.6);
+  }
 }
 
 function onDocumentMouseMove(event) {
@@ -141,7 +153,7 @@ function animate() {
 }
 
 function render() {
-  for (var i = 0, il = birds.length; i < il; i++) {
+  for (let i = 0; i < birds.length; i++) {
     boid = boids[i];
     boid.run(boids);
 

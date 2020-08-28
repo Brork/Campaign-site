@@ -11,3 +11,7 @@
 .block:hover {
   border-top-color: maroon;
 }
+
+.app {
+  font-family: "AustralisProSwash-Italic";
+}

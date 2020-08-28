@@ -2,11 +2,16 @@ import React from "react";
 
 class Flock extends React.Component {
   componentDidMount() {
-    const { url } = this.props;
-    this.mountScript(`${url}/three.min.js`, "three");
-    this.mountScript(`${url}/bird.js`, "bird");
-    this.mountScript(`${url}/boid.js`, "boid");
-    this.mountScript(`${url}/setup.js`, "setup");
+    const { url, birdScripts, updateBirdScripts } = this.props;
+    if (birdScripts === false) {
+      this.mountScript(`${url}/three.min.js`, "three");
+      this.mountScript(`${url}/bird.js`, "bird");
+      this.mountScript(`${url}/boid.js`, "boid");
+      this.mountScript(`${url}/setup.js`, "setup");
+      updateBirdScripts();
+    } else {
+      this.mountScript(`${url}/restart.js`, "animation");
+    }
   }
 
   mountScript = (path, id) => {

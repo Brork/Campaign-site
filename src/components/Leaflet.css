@@ -52,3 +52,7 @@ a.leaflet-control-zoom-in a.leaftlet-control-zoom-out {
   background-color: #bfb988;
   color: #888888;
 }
+
+.leaflet-top {
+  top: 10%;
+}

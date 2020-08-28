@@ -3,8 +3,6 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Leaflet.css";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-// import icon from "leaflet/dist/images/marker-icon.png";
-// import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import * as api from "../api";
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -60,21 +58,19 @@ class Leaflet extends React.Component {
         />
 
         {this.state.markers.map((marker) => {
-          if (marker.zoom === this.state.zoom) {
-            return (
-              <Marker
-                key={`marker-1`}
-                position={[marker.x, marker.y]}
-                icon={L.icon({
-                  iconUrl: `${url}/images/${marker.icon}.png`,
-                  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
-                  iconSize: [51, 34],
-                })}
-              >
-                <Popup>{marker.body}</Popup>
-              </Marker>
-            );
-          }
+          return marker.zoom === this.state.zoom ? (
+            <Marker
+              key={`marker-1`}
+              position={[marker.x, marker.y]}
+              icon={L.icon({
+                iconUrl: `${url}/images/${marker.icon}.png`,
+                shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+                iconSize: [51, 34],
+              })}
+            >
+              <Popup>{marker.body}</Popup>
+            </Marker>
+          ) : null;
         })}
       </Map>
     );

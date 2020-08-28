@@ -1,0 +1,24 @@
+.header {
+  position: absolute;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background: #2e1010;
+  height: 10%;
+  width: 100vw;
+  z-index: 1000;
+}
+
+.header-button {
+  text-decoration: none;
+  transition: color 1s ease;
+  margin: auto;
+}
+
+.header-button:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.white-text {
+  color: rgba(255, 255, 255, 0.7);
+}

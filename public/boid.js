@@ -1,6 +1,6 @@
 // Based on http://www.openprocessing.org/visuals/?visualID=6910
 
-const Boid = function () {
+let Boid = function () {
   let vector = new THREE.Vector3(),
     _acceleration,
     _width = 500,
@@ -9,10 +9,11 @@ const Boid = function () {
     _heightHalf = 250,
     _depth = 200,
     _goal,
-    _neighborhoodRadius = 100,
-    _maxSpeed = 3,
-    _maxSteerForce = 0.1,
     _avoidWalls = false;
+
+  const _neighborhoodRadius = 100,
+    _maxSpeed = 3,
+    _maxSteerForce = 0.1;
 
   this.position = new THREE.Vector3();
   this.velocity = new THREE.Vector3();
@@ -51,7 +52,7 @@ const Boid = function () {
       vector.multiplyScalar(5);
       _acceleration.addSelf(vector);
 
-      vector.set(this.position.x, -_height + _heightHalf, this.position.z);
+      vector.set(this.position.x, -_height + _height / 4, this.position.z);
       vector = this.avoid(vector);
       vector.multiplyScalar(5);
       _acceleration.addSelf(vector);
@@ -217,12 +218,12 @@ const Boid = function () {
   };
 
   this.separation = function (boids) {
-    var boid,
+    let boid,
       distance,
       posSum = new THREE.Vector3(),
       repulse = new THREE.Vector3();
 
-    for (var i = 0, il = boids.length; i < il; i++) {
+    for (let i = 0; i < boids.length; i++) {
       if (Math.random() > 0.6) continue;
 
       boid = boids[i];
