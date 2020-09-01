@@ -2,6 +2,9 @@ import React from "react";
 
 class Flock extends React.Component {
   componentDidMount() {
+    //mount external scripts for bird flocking animation and event listeners to terminate animations appropriately.
+    // if statement to determine if animations needs initiliasing or restarting as animation relies on declared global variables.
+
     const { url, birdScripts, updateBirdScripts } = this.props;
     if (birdScripts === false) {
       this.mountScript(`${url}/three.min.js`, "three");

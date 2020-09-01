@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
 import Leaflet from "./components/Leaflet.jsx";
-import Loading from "./components/Loading.jsx";
+// import Loading from "./components/Loading.jsx";
 import Main from "./components/Main.jsx";
 import Flock from "./components/Flock.jsx";
 import Header from "./components/Header.jsx";
-import * as api from "./api";
+// import * as api from "./api";
 import { Router } from "@reach/router";
 
 class App extends React.Component {

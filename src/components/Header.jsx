@@ -16,11 +16,11 @@ class Header extends React.Component {
               updatePageHeader();
             }
           }}
-          style={
-            window.location.pathname === "/"
-              ? { color: "rgba(0, 0, 0, 0.7)" }
-              : {}
-          }
+          //   style={
+          //     window.location.pathname === "/"
+          //       ? { color: "rgba(0, 0, 0, 0.7)" }
+          //       : {}
+          //   }
         >
           HOME
         </Link>
@@ -32,11 +32,11 @@ class Header extends React.Component {
               updatePageHeader();
             }
           }}
-          style={
-            window.location.pathname === "/world-map"
-              ? { color: "rgba(0, 0, 0, 0.7)" }
-              : {}
-          }
+          //   style={
+          //     window.location.pathname === "/world-map"
+          //       ? { color: "rgba(0, 0, 0, 0.7)" }
+          //       : {}
+          //   }
           id="map-button"
         >
           MAP

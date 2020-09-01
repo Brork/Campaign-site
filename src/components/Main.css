@@ -20,28 +20,28 @@
 
 .castle-section {
   position: absolute;
-  top: 18vh;
+  top: 16vh;
   width: 100vw;
   z-index: 1;
 }
 
 .forest-section {
   position: absolute;
-  top: 40vh;
+  top: 38vh;
   width: 100vw;
   z-index: 2;
 }
 
 .forest-layer-front {
   position: absolute;
-  top: 44vh;
+  top: 40vh;
   width: 100vw;
   z-index: 3;
 }
 
 .cliff-layer {
   position: absolute;
-  top: 44vh;
+  top: 40vh;
   width: 100vw;
   z-index: 5;
 }
@@ -49,7 +49,6 @@
 h1 {
   font-size: 4em;
   text-align: center;
-
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -71,7 +70,7 @@ p {
 @media (orientation: portrait) {
   .mountain-layer {
     position: absolute;
-    top: 26vh;
+    top: 24vh;
     width: 100vw;
   }
 

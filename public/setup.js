@@ -51,7 +51,7 @@ function init() {
 
   document.addEventListener("mousemove", onDocumentMouseMove, false);
   const buttons = document.getElementById("map-button");
-  buttons.addEventListener("click", stopAnimate);
+  buttons.addEventListener("click", stopAnimate, { passive: true });
   renderer = new THREE.CanvasRenderer();
   let parent;
   if (landscapeMode === true) {
@@ -148,10 +148,8 @@ function onDocumentMouseMove(event) {
 
 //
 function animate() {
-  setTimeout(function () {
-    animationFrame = requestAnimationFrame(animate);
-    render();
-  });
+  animationFrame = requestAnimationFrame(animate);
+  render();
 }
 
 function stopAnimate() {
