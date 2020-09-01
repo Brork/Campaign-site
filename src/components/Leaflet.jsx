@@ -41,11 +41,6 @@ class Leaflet extends React.Component {
         zoom={1}
         maxZoom={5}
         minZoom={1}
-        onClick={(e, { passive: ture }) => {
-          e.preventDefault();
-          const coord = e.latlng;
-          console.log(coord);
-        }}
         onzoomend={(e) => {
           this.setState({ zoom: e.target._zoom });
         }}

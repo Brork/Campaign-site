@@ -23,7 +23,7 @@ class Main extends React.Component {
         />
         <div className="parallax-container" id="container">
           <div className="background" />
-          <Parallax speed={1} div>
+          <Parallax speed={1}>
             <img
               className="mountain-layer"
               src={`${url}/images/mountain-layer.svg`}
